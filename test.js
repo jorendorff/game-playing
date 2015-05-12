@@ -94,8 +94,9 @@ TicTacToe.prototype.computeWinner = function () {
 };
 
 TicTacToe.prototype.moves = function () {
+    var board = this.board;
     return this.computeWinner() === undefined
-           ? [0, 1, 2, 3, 4, 5, 6, 7, 8].filter(m => this.board[m] === ' ')
+           ? [0, 1, 2, 3, 4, 5, 6, 7, 8].filter(function (m) { return board[m] === ' '; })
            : [];
 };
 
@@ -120,19 +121,20 @@ TicTacToe.prototype.applyMove = function (move) {
 
 TicTacToe.prototype.toString = function () {
     var s = "";
-    for (var y of [0, 3, 6]) {
+    var board = this.board;
+    [0, 3, 6].forEach(function (y) {
         if (y !== 0)
             s += "-----------\n";
-        for (var x of [0, 1, 2]) {
+        [0, 1, 2].forEach(function (x) {
             if (x !== 0)
                 s += "|";
-            var c = this.board[y + x];
+            var c = board[y + x];
             s += " " + (c === " " ? String(y + x) : c);
             if (x !== 2)
                 s += " ";
-        }
+        });
         s += "\n";
-    }
+    });
     return s;
 };
 
