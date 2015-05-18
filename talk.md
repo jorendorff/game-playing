@@ -1,4 +1,5 @@
-## Outline
+*(I gave this talk at NashJS on 13 May 2015.
+It clocked in at 47m50s, including demos.)*
 
 ## Intro intro (15s)
 
