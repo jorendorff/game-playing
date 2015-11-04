@@ -252,24 +252,23 @@ Fifteen.prototype.toString = function () {
 // === Some actual AI code
 
 // All game objects have these methods:
-//     ChessGame.start - snapshot of the beginning of the game
+//     GameClass.start - snapshot of the beginning of the game
 //     game.moves() - returns an array of moves available to the current player.
 //     game.scoreFinishedGame() - returns +1 if the last move won the game, 0 if it tied, -1 if it lost.
 //     game.applyMove(move) - returns a new Game object, a snapshot of the game after taking the given move
 
 // Returns an object {move: (the best move), score: (+1, -1, or 0)}.
 function bestMoveAndScore(game) {
-    var best = {move: null, score: -Infinity};
-    var moves = game.moves();
-    for (var i = 0; i < moves.length; i++) {
-        var move = moves[i];
+    var bestMove = undefined;
+    var bestScore = -Infinity;
+    game.moves().forEach(function (move) {
         var score = scoreMove(game, move);
         if (score > best.score) {
-            best.score = score;
-            best.move = move;
+            bestScore = score;
+            bestMove = move;
         }
-    }
-    return best;
+    });
+    return {move: bestMove, score: bestScore};
 }
 
 // Returns a number indicating how good the proposed move is.
