@@ -262,7 +262,8 @@ When I decided to write some game-playing code,
 I already knew all this stuff up to this point.
 I knew the algorithm.
 
-It still took me about a week of tinkering to write the code that we're about to write.
+It still took me about a week of spare-time tinkering
+to write the code that we're about to write.
 And the reason is this classic thing that happens in programming:
 you have to figure out how to break the problem down into reasonable parts,
 where to draw the boundary between this and that.
@@ -271,7 +272,8 @@ Until you get it right, everything is horrible.
 Where I ultimately landed is this:
 I decided that there should be one chunk of code that represents the game,
 and implements the rules of the game,
-and then the AI part would be totally separate from that.
+and then the AI part, the part we're about to write,
+would be totally separate from that.
 
 What I want is a function that computes the best possible move:
 
@@ -308,7 +310,7 @@ This game object has three methods that we're going to use:
 
 *   `game.applyMove(move)` takes the current snapshot,
     and returns a new game object
-    thats 'a snapshot of what the game will look like
+    that's a snapshot of what the game will look like
     after making that move.
 
     Game objects are immutable.
@@ -662,7 +664,7 @@ And then we wrote the code to work with
 *only* those three methods.
 
 Another way of saying it is that many games are similar,
-and this three-method interface captures that essentail similarity.
+and this three-method interface captures that essential similarity.
 
 *(slide: tree of tic-tac-toe, with scores assigned to every move)*
 
@@ -776,6 +778,8 @@ So why not just make the program faster?
     One killer reply is enough to sink a move.
     You can give up on that move and spend your time elsewhere.
 
+    It's called pruning because you snip off bad parts of the tree.
+
 *   **Bitboards** -
     The set of all pawns on the board
     can be represented by a 64-bit integer; and so on.
@@ -842,7 +846,7 @@ called [Microchess](https://github.com/jorendorff/computer-chess/tree/master/jor
 It's pretty great.
 
 What you're about to see is a user interface called XBoard.
-It's free software and lets you play human-vs.-human, human-vs.-computer, or computer-vs.computer.
+It's free software and lets you play human-vs.-human, human-vs.-computer, or computer-vs.-computer.
 It's pretty easy to write a chess-playing program that interoperates with XBoard.
 The XBoard program communicates with your chess-playing program
 via simple text commands.
