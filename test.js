@@ -1,3 +1,5 @@
+"use strict";
+
 // === UI helper functions
 // The top three functions here are used in play(), the cute
 // play-games-in-your-console function at the very bottom of this file.
