@@ -1,6 +1,13 @@
 *(I gave this talk at NashJS on 13 May 2015.
 It clocked in at 47m50s, including demos.)*
 
+Abstract: In this wide-ranging talk, we'll contemplate the nature of
+time, discover a simple algorithm that plays a perfect game of
+tic-tac-toe, learn the meaning of the word "heuristic", and share the
+curious experience of losing a real game to a few lines of JavaScript
+code.
+
+
 ## Intro intro (15s)
 
 Hi, I'm Jason Orendorff.
