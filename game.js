@@ -121,6 +121,9 @@ Pennies.prototype.toString = function () {
         return "There are " + this.n + " pennies left.";
 };
 
+Pennies.prototype.describeMove = function (move) {
+    return "I'll take " + (move === 1 ? "1 penny" : move + " pennies") + ".";
+};
 
 
 // === Another simple game: Fifteen

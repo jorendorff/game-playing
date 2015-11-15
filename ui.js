@@ -33,6 +33,10 @@ function setUpNewGame(gameClass) {
 //
 function computerTakeYourTurn(game) {
     var move = bestMoveAndScore(game).move;
+    if (typeof game.describeMove === "function")
+        console.log(game.describeMove(move));
+    else
+        console.log("My move is: " + move);
     return _annotateGame(game.applyMove(move), "computer", "human");
 }
 
@@ -146,7 +150,7 @@ function play(arg) {
             else if (game.winner === "computer")
                 console.log("I win!");
             else
-                console.log("It's a tie!");
+                console.log("It's a tie. Oh well.");
             play.__currentGame = undefined;
             return true;
         } else {
@@ -154,3 +158,5 @@ function play(arg) {
         }
     }
 }
+
+console.log("Hi! Type play() to begin.");
