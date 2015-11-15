@@ -102,7 +102,7 @@ function play(arg) {
         var legalMoves = game.moves();
         if (!legalMoves.some(function (x) { return move === x; })) {
             console.log("That isn't a legal move!");
-            console.log("Your possible moves are: " + legalMoves.map(showMove).join(","));
+            console.log("Your possible moves are: " + legalMoves.map(showMove).join(", "));
             return;
         }
 
