@@ -65,6 +65,9 @@ function _annotateGame(game, lastPlayer, otherPlayer) {
     return game;
 }
 
+assert(_annotateGame(new TicTacToe("OXXOOXX O"), "c", "h").isOver === true);
+assert(_annotateGame(new TicTacToe("OXXOOXX O"), "c", "h").winner === "c");
+
 
 // === Play in your very own JS console!
 

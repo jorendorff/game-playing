@@ -91,9 +91,6 @@ assert(new TicTacToe("XO XO X  ").scoreFinishedGame() === 1);
 assert(new TicTacToe("XOXOXXOXO").moves().length === 0);
 assert(new TicTacToe("XOXOXXOXO").scoreFinishedGame() === 0);
 assert(new TicTacToe("XOXOXO X ").moves().join(",") === "6,8");
-assert(_annotateGame(new TicTacToe("OXXOOXX O"), "c", "h").isOver === true);
-assert(_annotateGame(new TicTacToe("OXXOOXX O"), "c", "h").winner === "c");
-
 
 
 // === A much simpler game: Pennies
