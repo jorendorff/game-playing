@@ -122,7 +122,15 @@ Pennies.prototype.toString = function () {
 };
 
 Pennies.prototype.describeMove = function (move) {
-    return "I'll take " + (move === 1 ? "1 penny" : move + " pennies") + ".";
+    var what;
+    if (move === this.n) {  // game-winning move
+        what = (move === 1 ? "one" :
+                move === 2 ? "them both" :
+                "all three");
+    } else {
+        what = (move === 1 ? "1 penny" : move + " pennies");
+    }
+    return "I'll take " + what + ".";
 };
 
 
