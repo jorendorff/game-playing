@@ -1,3 +1,11 @@
+// game.js - Three examples of simple two-player games.
+//
+// These are games that the simplistic AI can play. The key criterion is:
+// they're all short.
+
+"use strict";
+
+
 // === The game of tic-tac-toe
 
 function TicTacToe(board) {

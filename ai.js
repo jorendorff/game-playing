@@ -1,10 +1,16 @@
-// === The actual AI code
-
+// ai.js - The algorithm.
+//
+// This code is not commented line-by-line. There is a cool but
+// long-winded explanation at:
+// https://github.com/jorendorff/game-playing/blob/master/talk.md
+//
 // All game objects have these methods:
-//     GameClass.start - snapshot of the beginning of the game
-//     game.moves() - returns an array of moves available to the current player.
-//     game.scoreFinishedGame() - returns +1 if the last move won the game, 0 if it tied, -1 if it lost.
-//     game.applyMove(move) - returns a new Game object, a snapshot of the game after taking the given move
+//     game.moves() returns an array of moves available to the current player.
+//     game.scoreFinishedGame() is +1 if the last move won the game, 0 tied, -1 lost.
+//     game.applyMove(move) returns a new Game object, how things look after taking that move
+
+"use strict";
+
 
 // Returns an object {move: (the best move), score: (+1, -1, or 0)}.
 function bestMoveAndScore(game) {
@@ -34,7 +40,7 @@ function scoreMove(game, move) {
 
 // === Tests
 
-// These assertions depend on the game classes defined in game.js
+// These assertions depend on the game classes defined in game.js.
 assert(scoreMove(new Pennies(1), 1) === 1);
 assert(bestMoveAndScore(new Pennies(1)).move === 1);
 assert(bestMoveAndScore(new Pennies(1)).score === 1);

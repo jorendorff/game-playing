@@ -1,4 +1,7 @@
+// ui.js - Play games against your computer in your browser's devtools console
+
 "use strict";
+
 
 // === UI helper functions
 // The top three functions here are used in play(), the cute
