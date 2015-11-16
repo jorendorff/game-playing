@@ -22,27 +22,24 @@ What is the shape of time?
 
 Well, time is a line.
 
-*(slide: a line)*
+![picture of a horizontal line with arrows at both ends](images/line.png)
 
 We know this because there is a word in English
 for a diagram where you draw a line,
 and you mark events on it in chronological order.
 It's called a timeline.
 
-*(slide: light cones)*
-
 Now, if you're into special relativity,
-
-*(slide: https://aphyr.com/posts/322-call-me-maybe-mongodb-stale-reads)*
-
 or equivalently, if you've worked with distributed systems,
 then you know this isn't quite true.
 The nature of time can get really strange.
 
+![diagram showing light cones of two events, neither of which occurs "before" or "after" the other](images/light-cones.png)
+
 To say nothing of Richard Feynman's interpretation of positrons
 as electrons moving backwards in time...
 
-*(slide: Feynman diagram)*
+![Feynman diagram showing an electron and a positron colliding](images/feynman-diagram.png)
 
 But we won't run into any of the truly weird stuff today.
 
@@ -55,7 +52,7 @@ If the past is a line, what is the shape of the future?
 The ancient Stoics believed that the universe is deterministic.
 Everything that happens is caused by earlier events and the laws of nature.
 
-*(slide: linear game of tic-tac-toe)*
+![Slide: a picture of a tic-tac-toe game, described below](images/tic-timeline.png)
 
 Here is the Stoic conception of a game of tic-tac-toe.
 It's a timeline.
@@ -78,7 +75,7 @@ the notion of decisions as selecting from *multiple possible futures.*
 
 Let's rewind to the beginning of our game and I'll show you what I mean.
 
-*(slide: empty tic-tac-toe grid at left)*
+![Slide: an empty tic-tac-toe grid, at the far left](images/tic-tier-0.png)
 
 Here we are at the beginning of a new game.
 Let's say we're playing X, and we get to go first.
@@ -87,13 +84,13 @@ Nine paths.
 
 Since I'm lazy, I'm only going to draw three of them.
 
-*(slide: first three-way fork, and three different snapshots each containing a single X)*
+![Slide: the same picture, updated with the first three-way fork, and three different snapshots each containing a single X](images/tic-tier-1.png)
 
 From our decision point we could go here, or here, or here,
 and the course of the game will be quite different depending on our choice.
 But this is not the only choice that happens in the game.
 
-*(slide: second ply)*
+![Slide: the same picture, but after each of those three snapshots, another branch, so there are now twelve new games shown, each with 1 X and 1 O](images/tic-tier-2.png)
 
 Whichever path we choose, we immediately reach another decision point:
 our opponent's turn.
@@ -101,7 +98,9 @@ our opponent's turn.
 And on it goes; but past this point it gets very hard
 to fit all the possibilities on a screen.
 
-*(slide: third ply)*
+![Slide: the same picture, but with 12 new forks and dozens of new games, each with 2 X's and 1 O](images/tic-tier-3.png)
+
+In fact, they don't all fit; I had to leave some off.
 
 The shape of the future, then, is this forking shape I like to call
 the galactic time squid.
@@ -138,11 +137,7 @@ But let's start with tic-tac-toe.
 Let's zoom way to the right and look at the very end of one arm
 of the time-squid.
 
-*(slide: tic-tac-toe endgame, tree of all futures starting from the position shown below)*
-
-    O . .
-    O . X
-    X X O
+![tic-tac-toe endgame, the tree of all futures starting from a position with three Xs and three Os, with the center square blank](images/tic-alg-begin.png)
 
 I'm going to show you this algorithm
 that solves tic-tac-toe and those other games,
@@ -254,6 +249,9 @@ that means our move must have been a +1.
 Since this move is winning and these two are losing,
 our choice is now obvious.
 +1 is better than -1.
+
+![a picture of the same branching tree with scores assigned](images/tic-alg-end.png)
+
 I bet even a computer can make this decision.
 
 You can see how we make decisions based on looking at the future,
@@ -284,9 +282,11 @@ would be totally separate from that.
 
 What I want is a function that computes the best possible move:
 
-    function bestMove(game) {
-        ???
-    }
+```javascript
+function bestMove(game) {
+    ???
+}
+```
 
 Here `game` will be what I call a "game object",
 and it's a snapshot of the game.
@@ -345,21 +345,25 @@ which is to make the function return both the best move and its score.
 We'll see why this is useful later.
 Our algorithm computes both things anyway, so it's no extra trouble to return both.
 
-    function bestMoveAndScore(game) {
-        var bestMove;
-        var bestScore;
-        ???
-        return {move: bestMove, score: bestScore};
-    }
+```javascript
+function bestMoveAndScore(game) {
+    var bestMove;
+    var bestScore;
+    ???
+    return {move: bestMove, score: bestScore};
+}
+```
 
 Now we just have to fill in the question marks with code that contemplates all possible futures.
 Even with everything we've talked about, it seems a little daunting, right?
 
 So to help with this I'm going to write a second function, called `scoreMove`:
 
-    function scoreMove(game, move) {
-        ???
-    }
+```javascript
+function scoreMove(game, move) {
+    ???
+}
+```
 
 Instead of picking the best move, we're just going to look at this *one* move
 and see how it looks.
@@ -377,15 +381,17 @@ All right. So does anyone see a way to implement either one of these functions?
 
 OK, the first thing that's clear is that we're going to need to loop through all the possible moves from here.
 
-    function bestMoveAndScore(game) {
-        var bestMove;
-        var bestScore;
+```javascript
+function bestMoveAndScore(game) {
+    var bestMove;
+    var bestScore;
 
-        game.moves().forEach(function (move) {
-            ???
-        });
-        return {move: bestMove, score: bestScore};
-    }
+    game.moves().forEach(function (move) {
+        ???
+    });
+    return {move: bestMove, score: bestScore};
+}
+```
 
 *(question for the audience, to check understanding:
 What is `.forEach()`? What will this do?)*
@@ -395,51 +401,57 @@ Well, we need to get a score for each move, right?
 That's why I started writing that other function down there.
 If we can get that working, then this part is easy:
 
-    function bestMoveAndScore(game) {
-        var bestMove;
-        var bestScore;
+```javascript
+function bestMoveAndScore(game) {
+    var bestMove;
+    var bestScore;
 
-        game.moves().forEach(function (move) {
-            var score = scoreMove(game, move);
-            ???
-        }
-        return {move: bestMove, score: bestScore};
+    game.moves().forEach(function (move) {
+        var score = scoreMove(game, move);
+        ???
     }
+    return {move: bestMove, score: bestScore};
+}
+```
 
 And now what? Just keep track, as we go, of the best move we've seen so far:
 
-    function bestMoveAndScore(game) {
-        var bestMove;
-        var bestScore;
+```javascript
+function bestMoveAndScore(game) {
+    var bestMove;
+    var bestScore;
 
-        game.moves().forEach(function (move) {
-            var score = scoreMove(game, move);
-            if (score > bestScore) {
-                bestMove = move;
-                bestScore = score;
-            }
-        });
-        return {move: bestMove, score: bestScore};
-    }
+    game.moves().forEach(function (move) {
+        var score = scoreMove(game, move);
+        if (score > bestScore) {
+            bestMove = move;
+            bestScore = score;
+        }
+    });
+    return {move: bestMove, score: bestScore};
+}
+```
 
 But I think we need to initialize these variables `bestMove` and `bestScore`.
 *(discussion)*
 
 What is a good starting value for `bestScore`?
 
-    function bestMoveAndScore(game) {
-        var bestMove = undefined;
-        var bestScore = -Infinity;
+```javascript
+function bestMoveAndScore(game) {
+    var bestMove = undefined;
+    var bestScore = -Infinity;
 
-        game.moves().forEach(function (move) {
-            var score = scoreMove(game, move);
-            if (score > bestScore) {
-                bestMove = move;
-                bestScore = score;
-            }
-        });
-        return {move: bestMove, score: bestScore};
-    }
+    game.moves().forEach(function (move) {
+        var score = scoreMove(game, move);
+        if (score > bestScore) {
+            bestMove = move;
+            bestScore = score;
+        }
+    });
+    return {move: bestMove, score: bestScore};
+}
+```
 
 And that's it, this part is done!
 
@@ -451,10 +463,12 @@ I guess the first thing we need to do
 is get a mental image of what the game will look like
 after we actually take that move.
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        ???
-    }
+```javascript
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    ???
+}
+```
 
 At this point, `game` still refers to the position *before* the move,
 and `after` is a new game object that shows the position *after* the move.
@@ -464,22 +478,26 @@ Now we have a before and an after snapshot. How does that help us?
 All right. Bear with me for a second.
 Let's start by asking the `after` snapshot what moves are available.
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        var ??? = after.moves();
-        ???
-    }
+```javascript
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    var ??? = after.moves();
+    ???
+}
+```
 
 What should we call this variable?
 This is the set of moves available *after* our move,
 so really it's an array of moves that will be available *to our opponent*.
 How about `replies`.
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        var replies = after.moves();
-        ???
-    }
+```javascript
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    var replies = after.moves();
+    ???
+}
+```
 
 OK. At this point there are two distinct possibilities:
 either the array is empty, meaning there are no more moves and the game is over;
@@ -489,28 +507,32 @@ based on the `replies` it leaves open for our opponent.
 What should we do if the game is over?
 Right, the rules of the game tell us who won in that case:
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        var replies = after.moves();
+```javascript
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    var replies = after.moves();
 
-        if (replies.length === 0)
-            return after.scoreFinishedGame();
+    if (replies.length === 0)
+        return after.scoreFinishedGame();
 
-        ???
-    }
+    ???
+}
+```
 
 But if the game is still on, then what?
 We have to compute a score for `move` based on how our opponent will respond.
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        var replies = after.moves();
+```javascript
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    var replies = after.moves();
 
-        if (replies.length === 0)
-            return after.scoreFinishedGame();
-        else
-            return bestMoveAndScore(after).score;  // BUG
-    }
+    if (replies.length === 0)
+        return after.scoreFinishedGame();
+    else
+        return bestMoveAndScore(after).score;  // BUG
+}
+```
 
 But there's actually something critically wrong with that code;
 anyone see it?
@@ -519,15 +541,17 @@ Right, anything that's good for our opponent is bad for us.
 So a positive score for our opponent should be a negative score for us.
 Add a minus sign:
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        var replies = after.moves();
+```javascript
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    var replies = after.moves();
 
-        if (replies.length === 0)
-            return after.scoreFinishedGame();
-        else
-            return -bestMoveAndScore(after).score;
-    }
+    if (replies.length === 0)
+        return after.scoreFinishedGame();
+    else
+        return -bestMoveAndScore(after).score;
+}
+```
 
 Incidentally, it is shockingly easy to make mistakes in this algorithm,
 and believe me, I wrote every bug that it's possible to write.
@@ -549,29 +573,31 @@ It's a really devious, sophisticated kind of playing to lose!
 
 So here is the complete code, which may or may not be full of bugs:
 
-    function bestMoveAndScore(game) {
-        var bestMove = undefined;
-        var bestScore = -Infinity;
+```javascript
+function bestMoveAndScore(game) {
+    var bestMove = undefined;
+    var bestScore = -Infinity;
 
-        game.moves().forEach(function (move) {
-            var score = scoreMove(game, move);
-            if (score > bestScore) {
-                bestMove = move;
-                bestScore = score;
-            }
-        });
-        return {move: bestMove, score: bestScore};
-    }
+    game.moves().forEach(function (move) {
+        var score = scoreMove(game, move);
+        if (score > bestScore) {
+            bestMove = move;
+            bestScore = score;
+        }
+    });
+    return {move: bestMove, score: bestScore};
+}
 
-    function scoreMove(game, move) {
-        var after = game.applyMove(move);
-        var replies = after.moves();
+function scoreMove(game, move) {
+    var after = game.applyMove(move);
+    var replies = after.moves();
 
-        if (replies.length === 0)
-            return after.scoreFinishedGame();
-        else
-            return -bestMoveAndScore(after).score;
-    }
+    if (replies.length === 0)
+        return after.scoreFinishedGame();
+    else
+        return -bestMoveAndScore(after).score;
+}
+```
 
 It fits on one screen, and it will play any simple two-player game flawlessly.
 
@@ -599,12 +625,14 @@ using an ES6 class.
 I'm not showing the front-end code,
 but here's the model, as an ES6 class:
 
-    class Pennies {
-        constructor(n) { this.remaining = n; }
-        moves() { return [1, 2, 3].filter(m => this.remaining >= m); }
-        scoreFinishedGame() { return +1; }
-        applyMove(move) { return new Pennies(this.remaining - move); }
-    }
+```javascript
+class Pennies {
+    constructor(n) { this.pennies = n; }
+    moves() { return [1, 2, 3].filter(m => this.pennies >= m); }
+    scoreFinishedGame() { return +1; }
+    applyMove(move) { return new Pennies(this.pennies - move); }
+}
+```
 
 If you aren't familiar with ES6 classes, I'm sorry, but this part will be over quickly!
 
@@ -616,7 +644,7 @@ Now we get to see what that means.
 This `Pennies` object is the game object for the game of pennies,
 so each `Pennies` object is a snapshot of a game in progress.
 
-The number of pennies remaining is `this.remaining`,
+The number of pennies currently on the table is `this.pennies`,
 and here are our three methods implementing the rules of Pennies:
 
 *   `.moves()` returns the array `[1, 2, 3]`,
@@ -637,7 +665,6 @@ But tic-tac-toe is about 50 lines of code.
 
 Think about that--implementing the *rules* of tic-tac-toe takes more code
 than it takes to *play* tic-tac-toe perfectly!
-
 
 *(optional demo: tic-tac-toe)*
 
@@ -673,7 +700,7 @@ And then we wrote the code to work with
 Another way of saying it is that many games are similar,
 and this three-method interface captures that essential similarity.
 
-*(slide: tree of tic-tac-toe, with scores assigned to every move)*
+*(slide: back to the tic-tac-toe tree, with scores assigned to every move)*
 
 But this algorithm needs to be modified slightly for chess.
 Why?
@@ -719,12 +746,12 @@ but it's still pretty bad.
 
 So, to modify this algorithm to work for chess, I would do two things.
 
-One, add a *depth limit*,
-so we don't search all possible chess games.
+1.  Add a *depth limit*,
+    so we don't search all possible chess games.
 
-Two, when the depth limit is reached,
-*estimate* how good or bad the resulting board is.
-The code that computes this estimation is called a heuristic function.
+2.  When the depth limit is reached,
+    *estimate* how good or bad the resulting board is.
+    The code that computes this estimation is called a heuristic function.
 
 Heuristic is a great word in software engineering.
 
