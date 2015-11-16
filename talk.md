@@ -1,11 +1,10 @@
-*(I gave this talk at NashJS on 13 May 2015.
-It clocked in at 47m50s, including demos.)*
+*In this talk, we'll contemplate the nature of time,
+discover a simple algorithm that plays a perfect game of tic-tac-toe,
+learn the meaning of the word "heuristic",
+and share the curious experience of losing a real game
+to a few lines of JavaScript code.*
 
-Abstract: In this wide-ranging talk, we'll contemplate the nature of
-time, discover a simple algorithm that plays a perfect game of
-tic-tac-toe, learn the meaning of the word "heuristic", and share the
-curious experience of losing a real game to a few lines of JavaScript
-code.
+![Title slide: Alternate futures, game-playing AI in JS](images/title.png)
 
 
 ## Intro intro (15s)
@@ -888,3 +887,12 @@ So I was able to copy some Haskell code and kind of smoosh it around,
 and hey presto, my program was able to talk to XBoard.
 
 *(demo: jorendorff_chess vs. Microchess)*
+
+
+## Talk history
+
+*   NashFP first, of course - 28 April 2015. With Calvin Bottoms.
+
+*   NashJS - 13 May 2015. 48 minutes, including demos.
+
+*   Nodevember, 15 Nov 2015. Cut a ton of stuff for time. ~32 minutes.
