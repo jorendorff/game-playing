@@ -72,6 +72,8 @@ the notion of decisions as selecting from *multiple possible futures.*
 
 ![Slide: a picture of two paths diverging in a yellow wood](images/two-roads-diverged.jpg)
 
+*Photo credit: [Eric Vondy](https://www.flickr.com/photos/vondy/6280078972/)*
+
 Let's rewind to the beginning of our game and I'll show you what I mean.
 
 ![Slide: an empty tic-tac-toe grid, at the far left](images/tic-tier-0.png)
@@ -619,9 +621,11 @@ Whoever takes the last penny wins. OK?
 
 Let's play:
 
-*(demo: Pennies <https://github.com/jorendorff/game-playing/>)*
-
-*(If we play this game by levels of audience applause, we are guaranteed to lose, it's awesome)*
+*(demo: Pennies. You can play by going to <http://jorendorff.github.io/negamax/>,
+opening your dev console, and typing `play(Pennies)`.
+The game is winnable, and it's a great little puzzle to figure out how!
+When I give this talk live, we play by levels of audience applause,
+and we are virtually guaranteed to lose—it's awesome. :smile:)*
 
 I won't show code for all these games, but
 I want to show the complete implementation of Pennies,
