@@ -89,10 +89,10 @@ From our decision point we could go here, or here, or here,
 and the course of the game will be quite different depending on our choice.
 But this is not the only choice that happens in the game.
 
-![Slide: the same picture, but after each of those three snapshots, another branch, so there are now twelve new games shown, each with 1 X and 1 O](images/tic-tier-2.png)
-
 Whichever path we choose, we immediately reach another decision point:
 our opponent's turn.
+
+![Slide: the same picture, but after each of those three snapshots, another branch, so there are now twelve new games shown, each with 1 X and 1 O](images/tic-tier-2.png)
 
 And on it goes; but past this point it gets very hard
 to fit all the possibilities on a screen.
@@ -101,12 +101,16 @@ to fit all the possibilities on a screen.
 
 In fact, they don't all fit; I had to leave some off.
 
-The shape of the future, then, is this forking shape I like to call
+The shape of the future, then, is this branching shape I like to call
 the galactic time squid.
+
 It's a technical term.
+
 Some people call it a tree.
+
 The Argentine poet Jorge Luis Borges wrote a short story about this shape.
-He called it "The Garden of Forking Paths".
+He called it
+["The Garden of Forking Paths"](https://en.wikipedia.org/wiki/The_Garden_of_Forking_Paths).
 
 
 ## An algorithm for winning (1m30s)
@@ -600,6 +604,8 @@ function scoreMove(game, move) {
 
 It fits on one screen, and it will play any simple two-player game flawlessly.
 
+*(see [ai.js](ai.js) in this repository)*
+
 
 ## Demo time: Pennies
 
@@ -660,7 +666,9 @@ and here are our three methods implementing the rules of Pennies:
 
 This game is super simple, so the implementation is very short,
 especially if you squeeze out all the whitespace, like I did here.
-But tic-tac-toe is about 50 lines of code.
+But tic-tac-toe is more than 50 lines of code.
+
+*(You can see it in [game.js](game.js) in this repository.)*
 
 Think about that--implementing the *rules* of tic-tac-toe takes more code
 than it takes to *play* tic-tac-toe perfectly!
