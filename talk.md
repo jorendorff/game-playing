@@ -70,7 +70,7 @@ But their determinism denies something we will need
 to write a good tic-tac-toe-playing program:
 the notion of decisions as selecting from *multiple possible futures.*
 
-*(picture of branching paths in a wood)*
+![Slide: a picture of two paths diverging in a yellow wood](images/two-roads-diverged.jpg)
 
 Let's rewind to the beginning of our game and I'll show you what I mean.
 
