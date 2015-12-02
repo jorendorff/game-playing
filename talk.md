@@ -900,6 +900,42 @@ and hey presto, my program was able to talk to XBoard.
 
 *(demo: jorendorff_chess vs. Microchess)*
 
+Since both programs are deterministic, they can only play one game.
+I uploaded a transcript of that game, so you can
+[view the game online with super cool analysis by lichess.org](http://en.lichess.org/dY0sf3Vc).
+Seriously, check this out.
+
+It is a wild, goofy game, with a lot of mistakes on both sides.
+Microchess hangs in there, but already seems to be losing
+when it plays back-to-back blunders with **27. Rg1**
+(missing a chance to simply take the knight and go ahead in material)
+and **28. Rh1** (accomplishing nothing and throwing away the rook at a1).
+It's all downhill from there.
+
+(**17. Nxg7+** is not so hot either; **17. Nc7+** seems clearly better.)
+
+----
+
+In case that link dies,
+here's PGN for the game, which you can paste into
+[any number of](http://www.chess.com/analysis-board-editor)
+[online](http://chesstempo.com/pgn-viewer.html)
+[chessboards](http://www.chessvideos.tv/chess-game-uploader.php).
+
+    [Event "Microchess vs. negamax demo"]
+    [Date "2015.04.28"]
+    [White "Microchess"]
+    [Black "jorendorff_rust"]
+    [Result "0-1"]
+    1. e4 d5 2. Bb5+ c6 3. Ba4 dxe4 4. Qh5 b5 5. Bb3 e6 6. Nc3 Qd4
+    7. Nge2 Qc5 8. Qxc5 Bxc5 9. Nxe4 Be7 10. Nd4 e5 11. Nf3 Nf6 12. Nc3 b4
+    13. Na4 e4 14. Ng5 Be6 15. Bxe6 fxe6 16. Nxe6 Nbd7 17. Nxg7+ Kf7 18. Nf5 Bf8
+    19. Nd4 Rg8 20. Nxc6 Rxg2 21. Kf1 Rg8 22. d4 Rc8 23. Nxa7 Rxc2 24. Bf4 Ng4
+    25. h3 Rxf2+ 26. Ke1 Rxf4 27. Rg1 Ne3 28. Rh1 Nc2+ 29. Kd2 Rg2+ 30. Kc1 Nxa1
+    31. Kb1 Nc2 32. d5 Ne3 33. Re1 Nc2 34. Rc1 Ne3 35. Rc7 Rf1+ 36. Rc1 Rgg1
+    37. Rxf1+ Rxf1#
+
+
 
 ## Talk history
 
