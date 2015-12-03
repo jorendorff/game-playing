@@ -880,47 +880,36 @@ I learned some things.
 
 I haven't implemented all the things I just talked about,
 but it was fun.
-Let's close with a demo of this program playing.
+Let's close with a demo of this program playing chess.
+I played it against a **very** weak chess program written in the 1970s,
+called Microchess,
+which is [another whole story](https://github.com/jorendorff/computer-chess/tree/master/jorendorff%2Bcpp)...
 
-We're going to see just how inept my own program is
-by watching it play a very weird game of chess
-against another program.
-
-Incidentally it'll be playing against a **very** weak chess program written in the 1970s,
-called [Microchess](https://github.com/jorendorff/computer-chess/tree/master/jorendorff%2Bcpp).
-It's pretty great.
-
-What you're about to see is a user interface called XBoard.
-It's free software and lets you play human-vs.-human, human-vs.-computer, or computer-vs.-computer.
-It's pretty easy to write a chess-playing program that interoperates with XBoard.
-The XBoard program communicates with your chess-playing program
-via simple text commands.
-So I was able to copy some Haskell code and kind of smoosh it around,
-and hey presto, my program was able to talk to XBoard.
-
-*(demo: jorendorff_chess vs. Microchess)*
-
-Since both programs are deterministic, they can only play one game.
-I uploaded a transcript of that game, so you can
+Since both programs are deterministic,
+against each other they only play one game.
+The same game every time. Very Stoic.
+I've uploaded a transcript of that game, so you can
 [view the game online with super cool analysis by lichess.org](http://en.lichess.org/dY0sf3Vc).
-Seriously, check this out.
+*(Seriously, if you're reading this on the web, check that link out!)*
 
 It is a wild, goofy game, with a lot of mistakes on both sides.
-Microchess hangs in there, but already seems to be losing
+Microchess is playing white.
+And it hangs in there, actually goes up a few pawns,
+but it already seems to be losing
 when it plays back-to-back blunders with **27. Rg1**
 (missing a chance to simply take the knight and go ahead in material)
 and **28. Rh1** (accomplishing nothing and throwing away the rook at a1).
-It's all downhill from there.
+And it's all downhill from there.
 
 (**17. Nxg7+** is not so hot either; **17. Nc7+** seems clearly better.)
 
 ----
 
-In case that link dies,
+*In case that link dies,
 here's PGN for the game, which you can paste into
 [any number of](http://www.chess.com/analysis-board-editor)
 [online](http://chesstempo.com/pgn-viewer.html)
-[chessboards](http://www.chessvideos.tv/chess-game-uploader.php).
+[chessboards](http://www.chessvideos.tv/chess-game-uploader.php).*
 
     [Event "Microchess vs. negamax demo"]
     [Date "2015.04.28"]
