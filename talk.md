@@ -767,7 +767,7 @@ So, to modify this algorithm to work for chess, I would do two things.
 Heuristic is a great word in software engineering.
 
 Heuristic means—this is not what your dictionary will say,
-but trust me—an approach to a problem is heuritic if it's effective mainly
+but trust me—an approach to a problem is heuristic if it's effective mainly
 because you put a lot of domain-specific knowledge and hacks into it,
 not because you thought of a clever, general algorithm.
 
